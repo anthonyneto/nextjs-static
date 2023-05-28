@@ -56,12 +56,8 @@ jobs:
           repository: anthonyneto/nextjs-static
 
       - name: Tag Release
-        uses: paulhatch/semantic-version@v5.0.2
-        with:
-          tag_prefix: "v"
-          major_pattern: "major:"
-          minor_pattern: "feat:"
-          version_format: "${major}.${minor}.${patch}"
-          change_path: "out"
-          namespace: node-${{ matrix.node-version }}
-          user_format_type: "json"
+        uses: anothrNick/github-tag-action@1.64.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+          PRERELEASE: true
