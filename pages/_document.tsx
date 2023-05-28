@@ -1,38 +1,49 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-  DocumentInitialProps,
-} from 'next/document'
-import { CssBaseline } from '@geist-ui/core'
+import React from 'react';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import { CssBaseline } from '@geist-ui/core';
 
-export default function MyDocument() {
-  return (
-    <Html>
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
-}
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    const initialProps = await Document.getInitialProps(ctx);
+    const styles = CssBaseline.flush();
 
-MyDocument.getInitialProps = async (
-  ctx: DocumentContext
-): Promise<DocumentInitialProps> => {
-  const initialProps = await Document.getInitialProps(ctx)
-  const styles = CssBaseline.flush()
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          {styles}
+        </>
+      )
+    };
+  }
 
-  return {
-    ...initialProps,
-    styles: (
-      <>
-        {initialProps.styles}
-        {styles}
-      </>
-    ),
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            (function(){
+              if (!window.localStorage) return;
+              if (window.localStorage.getItem('theme') === 'dark') {
+                document.documentElement.style.background = '#000';
+                document.body.style.background = '#000';
+              } else {
+                document.documentElement.style.background = '#fff';
+                document.body.style.background = '#fff';
+              }
+            })()`
+            }}
+          />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
+
+export default MyDocument;

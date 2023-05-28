@@ -3,15 +3,17 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "export": "next export"
+    "start": "next start"
   },
   "dependencies": {
     "@geist-ui/core": "latest",
     "@geist-ui/icons": "1.0.1",
+    "@geist-ui/react": "^2.2.5",
+    "@geist-ui/react-icons": "^1.0.1",
     "next": "latest",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10"
   },
   "devDependencies": {
     "@types/node": "^17.0.29",
