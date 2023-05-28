@@ -49,3 +49,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: anthonyneto/nextjs-static
+
+      - uses: paulhatch/semantic-version@v5.0.2
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          change_path: "out"
+          namespace: app
+          bump_each_commit: true
+          search_commit_body: true
+          user_format_type: "json"
+          enable_prerelease_mode: true
