@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use PNPM
+      - name: Use pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8.5.1
@@ -37,8 +37,9 @@ jobs:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and Push
         uses: docker/build-push-action@v4
         with:
+          context: .
           push: true
           tags: anthonyneto/nextjs-static:node-${{ matrix.node-version }}
