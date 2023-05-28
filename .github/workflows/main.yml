@@ -43,21 +43,20 @@ jobs:
           push: true
           tags: anthonyneto/nextjs-static:node-${{ matrix.node-version }}
 
-      - name: Update repo description
+      - name: Update Dockerhub Description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: anthonyneto/nextjs-static
 
-      - uses: paulhatch/semantic-version@v5.0.2
+      - name: Tag Release
+        uses: paulhatch/semantic-version@v5.0.2
         with:
           tag_prefix: "v"
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
           change_path: "out"
           namespace: app
-          bump_each_commit: true
           search_commit_body: true
           user_format_type: "json"
-          enable_prerelease_mode: true
