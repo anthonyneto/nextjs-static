@@ -13,6 +13,6 @@ COPY --from=pkg /tmp/spark /bin/
 
 USER nonroot
 # COPY --from=content /src/out/* /home/nonroot/
-COPY out/* /home/nonroot/
+COPY out /home/nonroot
 
 ENTRYPOINT ["spark", "/home/nonroot"]
