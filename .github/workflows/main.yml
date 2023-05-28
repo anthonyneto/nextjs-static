@@ -36,4 +36,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: anthonyneto/nextjs-static:latest
+          tags: anthonyneto/nextjs-static:node-${{ matrix.node-version }}
