@@ -19,6 +19,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Tag Release
+        uses: anothrNick/github-tag-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: false
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -54,10 +60,3 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: anthonyneto/nextjs-static
-
-      - name: Tag Release
-        uses: anothrNick/github-tag-action@1.64.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: false
-          PRERELEASE: true
