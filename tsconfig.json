@@ -35,7 +35,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/index.tsx.bk", "components/activity-event.tsx.bk", "lib/apolloClient.js"  ],
   "exclude": [
     "node_modules"
   ]

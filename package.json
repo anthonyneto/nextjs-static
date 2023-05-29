@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
@@ -14,6 +15,10 @@
     "@geist-ui/icons": "1.0.1",
     "@geist-ui/react": "^2.2.5",
     "@geist-ui/react-icons": "^1.0.1",
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "lodash": "^4.17.21",

@@ -5,7 +5,7 @@ import { GeistProvider, CssBaseline } from '@geist-ui/core';
 import { PrefersContext, themes, ThemeType } from '@/lib/use-prefers';
 import Menu from '@/components/navigation/menu';
 import Footer from '@/components/footer';
-import client from '../lib/apolloClient';
+import client from '../lib/withApollo';
 import { ApolloProvider } from '@apollo/client';
 
 const DashboardApp = ({ Component, pageProps }: AppProps) => {

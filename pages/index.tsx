@@ -1,14 +1,36 @@
-import Head from "next/head";
 import Image from "next/image";
-import { useQuery } from "@apollo/client";
-import withApollo from "@/lib/withApollo";
-import { CHARACTERS_QUERY } from "../graphql/queries";
+import { get } from "lodash";
+import Link from "next/link";
+import { getDataFromTree } from "@apollo/client/react/ssr";
+import withApollo from "../lib/withApollo";
+import { CharactersQuery, useCharactersQuery } from "../generated";
 
 function Home() {
-  const { data } = useQuery(CHARACTERS_QUERY);
+  const { data } = useCharactersQuery();
 
-  return <div>{JSON.stringify(data)}</div>;
+  const characters = get(
+    data,
+    "characters.results",
+    []
+  ) as CharactersQuery["characters"]["results"];
 
+  return (
+    <div>
+      {characters.map((character) => (
+        <div key={character.id}>
+          <Image
+            src={character.image}
+            alt={character.name}
+            width="200"
+            height="200"
+          />
+          <Link href="/characters/[id]" as={`/characters/${character.id}`}>
+            {character.name}
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
 }
 
-export default withApollo(Home);
+export default withApollo(Home, { getDataFromTree });
